@@ -9,6 +9,11 @@ module.exports = {
     extensions: ['.js', '.jsx', 'json'],
   },
   entry: './client',
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'app.js',
+    publicPath: '/dist/',
+  },
   module: {
     rules: [
       {
@@ -23,11 +28,6 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
   ],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'app.js',
-    publicPath: '/dist/',
-  },
   devServer: {
     devMiddleware: { publicPath: '/dist' },
     static: { directory: path.resolve(__dirname) },
