@@ -9,12 +9,16 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            this.hasMany(models.accounts, { foreignKey: 'user_uuid', sourceKey: 'uuid' });
+            this.hasMany(models.orders, { foreignKey: 'user_uuid', sourceKey: 'uuid' });
+            this.hasMany(models.favorites, { foreignKey: 'user_uuid', sourceKey: 'uuid' });
         }
     }
     User.init({
         uuid: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
         },
         email: {
             type: DataTypes.STRING,

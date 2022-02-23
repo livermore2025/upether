@@ -8,13 +8,14 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            this.belongsTo(models.favorites, { foreignKey: 'favorites_uuid', targetKey: 'uuid' });
         }
     }
     Coin.init({
         uuid: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
         },
         email: {
             type: DataTypes.STRING,

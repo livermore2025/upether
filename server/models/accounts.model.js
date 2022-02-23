@@ -9,38 +9,26 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            this.belongsTo(models.users, { foreignKey: 'user_uuid', targetKey: 'uuid' });
         }
     }
     Account.init({
         uuid: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
         },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                isEmail: true,
-            },
-            unique: true,
+        currency: {
+            type: DataTypes.STRING(255),
         },
-        password: {
-            type: DataTypes.STRING(64),
-            validate: {
-                is: /^[0-9a-f]{64}$/i
-            },
-            allowNull: false,
+        balance: {
+            type: DataTypes.STRING(255),
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        locked: {
+            type: DataTypes.STRING(255),
         },
-        date_of_birth: {
-            type: DataTypes.DATE,
-            validate: {
-                isDate: true
-            },
-            allowNull: false,
+        avg_buy_price: {
+            type: DataTypes.STRING(255),
         },
     }, {
         sequelize,

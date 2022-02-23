@@ -8,13 +8,17 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            this.belongsTo(models.users, { foreignKey: 'user_uuid', targetKey: 'uuid' });
+            this.hasMany(models.coins, { foreignKey: 'favorites_uuid', sourceKey: 'uuid' });
+
+
         }
     }
     Favorite.init({
         uuid: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
         },
         coin_uuid: {
             type: DataTypes.STRING,

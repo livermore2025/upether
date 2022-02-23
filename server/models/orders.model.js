@@ -8,40 +8,41 @@ module.exports = (sequelize, DataTypes) => {
          * The `models/index` file will call this method automatically.
          */
         static associate(models) {
-            // define association here
+            this.belongsTo(models.users, { foreignKey: 'user_uuid', targetKey: 'uuid' });
         }
     }
     Order.init({
         uuid: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
         },
         side: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING(255),
         },
         ord_type: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING(255),
         },
         price: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING(255),
         },
         state: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING(255),
         },
         market: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING(255),
         },
         volume: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING(255),
         },
         remaining_volume: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING(255),
         },
         locked: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING(255),
         },
         executed_volume: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING(255),
         },
     }, {
         sequelize,
